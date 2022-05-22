@@ -1,1 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript</title>
+    <link rel="stylesheet" href="lol.css">
 
+</head>
+<bady>  
+        
+    <script>alert("Хочу 12 балів");</script>
+    
+        <h2>Нестерук Дмитро Вікторович</h2><br>
+        <h3>Годинник</h3>
+      
+        <div id="clock">
+          <div id="time" class="glow"></div>
+      
+          <div id="date">
+            <span class="month"></span>
+            <span class="day"></span>,
+            <span class="year"></span>
+          </div>
+      
+          <div class="container">
+            <button id="twelveHourBtn">24 годинний годиник</button>
+          </div>
+        </div>
+      
+        <div class="container">
+          <ul id="days">
+            <li class="sunday">Неділя</li>
+            <li class="monday">Понеділок</li>
+            <li class="tuesday">Вівторок</li>
+            <li class="wednesday">Середа</li>
+            <li class="thursday">Четвер</li>
+            <li class="friday">Пятниця</li>
+            <li class="saturday">Субота</li>
+          </ul>
+        </div>
+      
+      
+    <script>
+const switchBtn = document.getElementById("twelveHourBtn");
+
+let twelveHourBtn = document.getElementById("twelveHourBtn");
+let getTime = document.getElementById("time");
+let isTwelveHour = true;
+let amPm = " AM";
+
+// ============ Get the time ======================
+
+function checkTime(i) {
+  if (i < 10) {
+    i = "0" + i;
+  }
+  return i;
+}
+
+function startTime() {
+  let hours = "12";
+  let today = new Date();
+  let h = today.getHours();
+
+  if (h > 12) {
+    amPm = " PM";
+  } else {
+    amPm = " AM";
+  }
+
+  if (isTwelveHour) {
+    hours = "24";
+    if (h >= 12) {
+      h = h - 12;
+    }
+  } else {
+    hours = "12";
+  }
+  twelveHourBtn.innerHTML = hours + " hour clock";
+  let m = today.getMinutes();
+  let s = today.getSeconds();
+  // add a zero in front of numbers<10
+  m = checkTime(m);
+  s = checkTime(s);
+  getTime.innerHTML = h + ":" + m + ":" + s + amPm;
+  t = setTimeout(function() {
+    startTime();
+  }, 500);
+}
+
+startTime();
+
+switchBtn.addEventListener("click", function(e) {
+  isTwelveHour = !isTwelveHour;
+});
+
+// ============= Get the day of the week =============================
+switch (new Date().getDay()) {
+  case 0:
+    document.querySelector(".sunday").classList.add("glow");
+    break;
+  case 1:
+    document.querySelector(".monday").classList.add("glow");
+    break;
+  case 2:
+    document.querySelector(".tuesday").classList.add("glow");
+    break;
+  case 3:
+    document.querySelector(".wednesday").classList.add("glow");
+    break;
+  case 4:
+    document.querySelector(".thursday").classList.add("glow");
+    break;
+  case 5:
+    document.querySelector(".friday").classList.add("glow");
+    break;
+  case 6:
+    document.querySelector(".saturday").classList.add("glow");
+}
+
+// ============= Get the date =============================
+let month = document.querySelector(".month");
+let day = document.querySelector(".day");
+let year = document.querySelector(".year");
+let date = new Date();
+
+let months = [
+  "Січень",
+  "Лютий",
+  "Березень",
+  "Квітень",
+  "Травень",
+  "Червень",
+  "Липень",
+  "Серпень",
+  "Вересень",
+  "Жовтень",
+  "Листопад",
+  "Грудень"
+];
+month.innerHTML = months[date.getMonth()];
+day.innerHTML = date.getDate();
+year.innerHTML = date.getFullYear();
+    </script>
+    
+    <script language="JavaScript">
+        function calculation() {
+        var x= 6;
+        var y= 2;
+        var z= 4;
+        var result= x + y*y + Math.sqrt(z);
+        alert(result);
+        }
+        </script>
+        <form>
+         <input type="button" value="Розвязок мого прикладу" onClick="calculation()">
+       </form><br>
+
+       <form>
+        <input type="button" value="Важлива подія" onClick="alert('Канікули 01.06.2022')">
+    </form>
+
+
+</bady>
+</html>
